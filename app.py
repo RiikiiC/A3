@@ -58,13 +58,7 @@ def logout():
 
 @app.route("/article/<name>")
 def article(name):
-    """
-    /article/FeaturedArticle → templates/articles/FeaturedArticle.html
-    """
-    try:
-        return render_template(f"articles/{name}.html")
-    except:
-        return "Article not found"
+    return render_template("articles/" + name + ".html")
 
 
 

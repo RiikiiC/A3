@@ -28,6 +28,9 @@
                 <li><a href="/about"> ABOUT </a></li>
                 <li><a href="/contact"> CONTACT </a></li>
                 {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
                     <li><a href="/logout"> LOGOUT </a></li>
                 {% else %}
                     <li><a href="/login"> LOGIN </a></li>

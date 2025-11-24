@@ -102,7 +102,29 @@ def admin_articles():
     cursor.execute("SELECT * FROM Articles")
     articles = cursor.fetchall()
 
-    return render_template("admin/article-list-record.html", role=session.get('role'))
+    return render_template("admin/article-list-record.html", role=session.get('role'), articles=articles)
+
+@app.route("/admin/article-add", methods=['GET', 'POST'])
+def admin_article_add():
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+    
+    if request.method == 'GET':
+        return render_template("admin/article-add.html", role=session.get('role'))
+    
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        cursor.execute('''INSERT INTO `Articles` (title, content)
+            VALUES (%s, %s)
+                ''', (title, content))
+        conn.commit()
+
+        return redirect("/admin/articles")
+
+
+
 
 
 @app.route("/about")

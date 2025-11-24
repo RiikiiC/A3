@@ -61,15 +61,26 @@ def process_login():
                        WHERE `email` = %s 
                        AND `password` = %s''',(email, password))
         
-        record = cursor.fetchone()
+        user = cursor.fetchone()
 
-        if record:
-            session['userId'] = record['userId']
-            session['username'] = record['username']
-            session['role'] = record['role']
-            return redirect("/")
+        if user:
+            session['userId'] = user['userId']
+            session['username'] = user['username']
+            session['role'] = user['role']
+
+            if user['role'] == 'admin':
+                return redirect("/admin")
+            else:
+                return redirect("/")
         else:
             return render_template("not-logged-in.html")
+        
+
+@app.route("/admin")
+def admin_dashboard():
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+    return render_template("admin/dashboard.html", role=session.get('role'))
 
 
 @app.route("/logout")
@@ -78,11 +89,20 @@ def logout():
     return render_template("logout.html")
 
 
-
 @app.route("/article/<name>")
 def article(name):
     return render_template("articles/" + name + ".html")
 
+
+@app.route("/admin/articles")
+def admin_articles():
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+
+    cursor.execute("SELECT * FROM Articles")
+    articles = cursor.fetchall()
+
+    return render_template("admin/article-list-record.html", role=session.get('role'))
 
 
 @app.route("/about")

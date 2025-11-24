@@ -124,6 +124,69 @@ def admin_article_add():
         return redirect("/admin/articles")
 
 
+@app.route("/admin/article-edit/<int:article_id>", methods=['GET', 'POST'])
+def admin_article_edit(article_id):
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+    
+    if request.method == 'GET':
+        cursor.execute("SELECT * FROM Articles WHERE articleId = %s", (article_id,))
+        article = cursor.fetchone()
+        return render_template("admin/article-edit.html", role=session.get('role'), article=article)
+    
+    if request.method == 'POST':
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        cursor.execute(
+            "UPDATE Articles SET title = %s, content = %s WHERE articleId = %s",
+            (title, content, article_id)
+        )            
+        conn.commit()
+
+        return redirect("/admin/articles")
+
+
+@app.route("/admin/article-delete/<int:article_id>", methods=['GET', 'POST'])
+def admin_article_delete(article_id):
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+    
+    if request.method == 'GET':
+        cursor.execute("SELECT * FROM Articles WHERE articleId = %s", (article_id,))
+        article = cursor.fetchone()
+        return render_template("admin/article-delete.html", role=session.get('role'), article=article)
+    
+    if request.method == 'POST':
+        cursor.execute(
+            "DELETE FROM Articles WHERE articleId = %s", 
+            (article_id,)
+        )            
+        conn.commit()
+
+        return redirect("/admin/articles")
+
+
+@app.route("/admin/set-featured/<int:article_id>", methods=['GET', 'POST'])
+def admin_set_featured(article_id):
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+    
+    if request.method == 'GET':
+        cursor.execute("SELECT * FROM Articles WHERE articleId = %s", (article_id,))
+        article = cursor.fetchone()
+        return render_template("admin/set-featured.html", role=session.get('role'), article=article)
+    
+    if request.method == 'POST':
+        cursor.execute("UPDATE Articles SET Featured = 0")  
+        cursor.execute(
+            "UPDATE Articles SET Featured = 1 WHERE articleId = %s", 
+            (article_id,)
+        )            
+        conn.commit()
+
+        return redirect("/admin/articles")
+
 
 
 

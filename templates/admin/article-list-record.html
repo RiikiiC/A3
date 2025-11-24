@@ -14,6 +14,9 @@
         {% for article in articles %}
             <li>
                 {{ article.articleId }}, {{ article.title }}
+                {% if article.Featured == 1 %}
+                    (FEATURED)
+                {% endif %}
                 <a href="/admin/article-edit/{{article.articleId}}">Edit</a>
                 <a href="/admin/article-delete/{{article.articleId}}">Delete</a>
                 <a href="/admin/set-featured/{{article.articleId}}">Set Featured</a>

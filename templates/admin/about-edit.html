@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Edit</title>
+</head>
+<body>
+    {% if role == 'admin' %}
+    <h1>Edit About Page</h1>
+    <a href="/admin">Back to Admin Dashboard</a>
+    <a href="/logout">Logout</a>
+
+    <form action="/admin/about-edit" method="POST">
+        <label>About Content</label>
+        <textarea required name="content">{{ about.content }}</textarea>
+        <input type="submit" value="Save">
+    </form>
+</body>
+</html>

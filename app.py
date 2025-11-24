@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from dotenv import load_dotenv
 import os
 import mysql.connector
@@ -48,6 +48,12 @@ def process_register():
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return render_template("logout.html")
+
 
 
 @app.route("/about")

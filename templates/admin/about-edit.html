@@ -16,5 +16,8 @@
         <textarea required name="content">{{ about.content }}</textarea>
         <input type="submit" value="Save">
     </form>
+    {% else %}
+    <p>NOPE! YOU CANNOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}
 </body>
 </html>

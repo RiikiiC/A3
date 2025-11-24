@@ -11,10 +11,12 @@
     <a href="/admin/articles">Back to Articles List</a>
 
     <p>set {{ article.title }} as featured article</p>
-    <form action="/admin/article-delete/{{ article.articleId }}" method="POST">
+    <form action="/admin/set-featured/{{ article.articleId }}" method="POST">
         <input type="submit" value="Set Featured">
     </form>
     <a href="/admin/articles">Cancel</a>
-    
+    {% else %}
+    <p>NOPE! YOU CANNOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}    
 </body>
 </html>

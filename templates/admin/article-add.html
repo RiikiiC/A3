@@ -20,7 +20,9 @@
 
         <input type="submit" value="Add Article">
     </form>
-
+    {% else %}
+    <p>NOPE! YOU CANNOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}
 
 </body>
 </html>

@@ -56,6 +56,18 @@ def logout():
 
 
 
+@app.route("/article/<name>")
+def article(name):
+    """
+    /article/FeaturedArticle → templates/articles/FeaturedArticle.html
+    """
+    try:
+        return render_template(f"articles/{name}.html")
+    except:
+        return "Article not found"
+
+
+
 @app.route("/about")
 def about():
     return render_template("about.html")
@@ -63,3 +75,22 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+@app.route("/process-contact", methods=["POST"])
+def process_contact():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    role = request.form.get('role')
+
+    industry = 1 if request.form.get("industry") else 0
+    technical = 1 if request.form.get("technical") else 0
+    career = 1 if request.form.get("career") else 0
+
+    cursor.execute("""
+        INSERT INTO Contacts (name, email, industry, technical, career, role)
+        VALUES (%s, %s, %s, %s, %s, %s)
+    """, (name, email, industry, technical, career, role))
+
+    conn.commit()
+
+    return render_template("submit-contact.html")

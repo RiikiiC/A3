@@ -14,12 +14,12 @@
         {% for article in articles %}
             <li>
                 {{ article.articleId }}, {{ article.title }}
-                <a href="/admin/article-add">Add</a>
                 <a href="/admin/article-edit/{{article.articleId}}">Edit</a>
                 <a href="/admin/article-delete/{{article.articleId}}">Delete</a>
                 <a href="/admin/set-featured/{{article.articleId}}">Set Featured</a>
             </li>
         {% endfor %}
     </ul>
+    
 </body>
 </html>

@@ -24,9 +24,15 @@
         <img src="/static/image/Site-logo.webp" alt="logo" class="logo">
         <nav>
             <ul>
-                <li><a href="homepage.html"> HOMEPAGE </a></li>
-                <li><a href="about.html"> ABOUT </a></li>
-                <li><a href="contact.html"> CONTACT </a></li>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
             </ul>
         </nav>
     </header>

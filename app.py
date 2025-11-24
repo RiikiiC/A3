@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 from dotenv import load_dotenv
 import os
 import mysql.connector
@@ -20,7 +20,7 @@ conn = mysql.connector.connect(
     port=8889
 )
 
-cursor = conn.cursor()
+cursor = conn.cursor(dictionary=True)
 
 @app.route("/")
 def hompage():
@@ -45,9 +45,32 @@ def process_register():
 
     return render_template("login.html")
 
+
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+@app.route("/process-login", methods=['POST'])
+def process_login():
+    if request.method == 'POST':
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        cursor.execute('''SELECT * 
+                       FROM `User` 
+                       WHERE `email` = %s 
+                       AND `password` = %s''',(email, password))
+        
+        record = cursor.fetchone()
+
+        if record:
+            session['userId'] = record['userId']
+            session['username'] = record['username']
+            session['role'] = record['role']
+            return redirect("/")
+        else:
+            return render_template("not-logged-in.html")
+
 
 @app.route("/logout")
 def logout():

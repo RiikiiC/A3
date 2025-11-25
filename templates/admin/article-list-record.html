@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article List Record</title>
+</head>
+<body>
+    <h1>Articles Management</h1>
+    <a href="/admin/articles">Back to Articles List</a>
+    <a href="/admin/article-add">Add New Article</a>
+    <a href="/logout">Logout</a>
+    <ul>
+        {% for article in articles %}
+            <li>
+                {{ article.articleId }}, {{ article.title }}
+                {% if article.Featured == 1 %}
+                    (FEATURED)
+                {% endif %}
+                <a href="/admin/article-edit/{{article.articleId}}">Edit</a>
+                <a href="/admin/article-delete/{{article.articleId}}">Delete</a>
+                <a href="/admin/set-featured/{{article.articleId}}">Set Featured</a>
+            </li>
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>

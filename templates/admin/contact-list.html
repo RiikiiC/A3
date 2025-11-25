@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+</head>
+<body>
+    {% if role == 'admin' %}
+    <h1>Contact Form Submissions</h1>
+    <a href="/admin">Back to Admin Dashboard</a>
+    <a href="/logout">Logout</a>
+
+    <table>
+        {% for contact in contacts %}
+        <tr>
+            <td>{{ contact.contactId }}</td>
+            <td>{{ contact.name }}</td>
+            <td>{{ contact.email }}</td>
+
+            <td>{% if contact.industry == 1 %}Yes{% else %}-{% endif %}</td>
+            <td>{% if contact.technical == 1 %}Yes{% else %}-{% endif %}</td>
+            <td>{% if contact.career == 1 %}Yes{% else %}-{% endif %}</td>
+
+            <td>{{ contact.role }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>NOPE! YOU CANNOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}
+</body>
+</html>

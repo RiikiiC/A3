@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walt Disney Animation Studios Production Workers Ratify First Contract</title>
+        <link rel="stylesheet" href="../static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+            
+    <meta name="description" content="Walt Disney Animation Studios Production Workers Ratify First Contract"> 
+    <meta name="keywords" content="Disney, Workers, Animation, Industry News"> 
+    <link rel="author" content="Katie Kilkenny" href="https://www.hollywoodreporter.com/author/katie-kilkenny-thr/"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="../static/image/Site-logo.webp" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <p>Total likes: {{ count }}</p>
+            {% if session.get('userId') %}
+                {% if session.get('role') == 'member' %}
+                    <form action="/like/{{ name }}" method="POST">
+                        {% if userliked %}
+                                <button style="background-color: rgb(11, 242, 192);">Liked</button>
+                        {% else %}
+                                <button style="background-color: rgb(190, 190, 190);">Like</button>
+                        {% endif %}
+                    </form>
+                {% elif session.get('role') == 'admin' %}
+                        <p>Admin cannot click</p>
+                {% endif %}
+            {% else %}
+                <p>
+                    <a href="/login">Login to like the article.</a>
+                </p>
+            {% endif %}
+        </section>
+        <article class="article-item">
+            <h1>Walt Disney Animation Studios Production Workers Ratify First Contract</h1>
+            <p>Author: Katie Kilkenny</p>
+            <img src="../static/image/WDAS-Solidarity-2-H-2025.webp" alt="Walt Disney Animation Studios Union">
+        
+            <p>
+                Production workers at Walt Disney Animation Studios officially have a first union contract.
+            </p>
+            <p>
+                In a ratification vote that took ended on Wednesday, 93 percent of participating bargaining unit members voted to support a deal reached on Feb. 13, while 7 percent voted against. Ninety-six percent of union members turned out to vote on the agreement, which is a sideletter to The Animation Guild's preexisting contract with Walt Disney Animation Studios.
+            <p>
+                The agreement offers the unit's production coordinators, production supervisors and production managers pension and health benefits and amplified minimum wage rates. The union claims that minimum rates have gone up 24 percent for production managers, 29 percent for production supervisors and 35 percent for production coordinators as a result of the negotiation.
+            </p>
+        
+            <p><a href="https://www.hollywoodreporter.com/business/business-news/walt-disney-animation-studios-production-union-contract-1236156826/">External source</a></p>
+            <p><a href="/">Go back</a></p>
+        </article>
+    </main>
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

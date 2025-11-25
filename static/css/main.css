@@ -1,0 +1,127 @@
+
+body {
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+
+    background-color: grey;
+    background-image: url("../image/b5651b81f9355f3cecf2c95a9ec63d09.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+main {
+    margin-top: 220px;
+    margin-bottom: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+h1, h2, h3 {
+    font-size: 1.5em;
+    position: relative;
+    left: 30px;
+}
+
+.welcome {
+    width: 80%;
+    height: 120px auto;
+    margin: 20px;
+    padding:20px;
+    border: 2px;
+    background-color: lightcyan;
+}
+
+.article-item {
+    background-color: white;
+    padding: 10px 20px;
+}
+
+.article-featured {
+    background-color: white;
+    font-size: 1.2em;
+    padding: 20px 40px;
+}
+
+.author-technical {
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+}
+
+.author-career {
+    background-color: purple;
+    color: white;
+    padding: 10px 20px;
+}
+
+.author-industry {
+    background-color: rgb(27, 29, 69);
+    color: white;
+    padding: 10px 20px;
+}
+
+img {
+    max-width:100%;
+    max-height:200px;
+}
+
+
+
+header {
+    position:fixed;
+    top: 0;
+    width: 100%;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+footer {
+    position:fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    padding: 5px 10px;
+}
+
+
+
+@media (width < 640px) {
+    .categories {
+        display: flex;
+	    flex-direction:column;
+    }
+    p {
+        font-size: 1.2em;
+        line-height: 1.5;
+    }
+    .logo {
+        max-width: 50%;
+    }
+}
+
+@media (640px <= width <= 1200px) {
+    .categories {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; 
+    }
+    .category {
+        flex: 1;
+    }
+    .article-featured {
+        width: 80%;
+    }
+    .logo {
+        max-width: 100%;
+    }
+}
+
+.contact {
+    padding:20px;
+    background-color: white;
+}
+
+input[required] {
+    border: 2px solid red;
+}

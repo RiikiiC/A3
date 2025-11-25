@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SFU computing science student takes star turn at Disney</title>
+        <link rel="stylesheet" href="../static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="SFU computing science student takes star turn at Disney"> 
+    <meta name="keywords" content="Disney, Computing science, Career News"> 
+    <link rel="author" content="Matt Kieltyka"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="../static/image/Site-logo.webp" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <p>Total likes: {{ count }}</p>
+            {% if session.get('userId') %}
+                {% if session.get('role') == 'member' %}
+                    <form action="/like/{{ name }}" method="POST">
+                        {% if userliked %}
+                                <button style="background-color: rgb(11, 242, 192);">Liked</button>
+                        {% else %}
+                                <button style="background-color: rgb(190, 190, 190);">Like</button>
+                        {% endif %}
+                    </form>
+                {% elif session.get('role') == 'admin' %}
+                        <p>Admin cannot click</p>
+                {% endif %}
+            {% else %}
+                <p>
+                    <a href="/login">Login to like the article.</a>
+                </p>
+            {% endif %}
+        </section>
+        <article class="article-item">
+            <h1>SFU computing science student takes star turn at Disney</h1>
+            <p>Author: Matt Kieltyka</p>
+            <img src="../static/image/1758646966998.jpg" alt="Mariz Fahmy">
+
+            <p>
+                When Mariz Fahmy came to Simon Fraser University to study computing science, seeing her name as the credits rolled on a film that's taken the world by storm wasn't an outcome she imagined.
+            </p>
+            <p>
+                But thanks to a couple unforgettable co-op placements at Sony Pictures Imageworks and Walt Disney Animation Studios in Vancouver, Fahmy hasn't just seen her name up on the big screen - she also sees an exciting future in tech.
+            </p>
+            <p>
+                “It feels amazing to have such big names on my resume,” says Fahmy, who will walk across the stage at convocation this fall. “Going into the Computing Science program, I didn't even know that there were tech opportunities within media and animation. That was something that was very new to me. It feels pretty good to have those names on there for sure and it's given me confidence in pursuing any job.”
+            </p>
+            <p>
+                The university offers a wide range of programs for students interested in tech - from software systems to data science, statistics and interactive arts - and Fahmy was impressed by the reputation for the School of Computing Science, which ranks fourth in Canada overall and second in computer vision and computer graphics.
+            </p>
+            <p>
+                “I like that in tech you&apos;re not just confined to one thing,” she says. “There are so many different companies that you could work for doing so many different things. I found out how broad tech was and that really appealed to me.”
+            </p>
+            <p>
+                Fahmy says the program gave her the technical skills and theoretical knowledge she needs to succeed, but also the practical experience through projects and the co-op program, which she says has been the most valuable experience for her.
+            </p>
+        
+            <p><a href="https://www.sfu.ca/sfunews/stories/2025/09/sfu-computing-science-student-takes-star-turn-at-disney.html">External source</a></p>
+            <p><a href="/">Go back</a></p>
+        </article>
+    </main>
+
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

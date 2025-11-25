@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Article</title>
+</head>
+<body>
+    {% if role == 'admin' %}
+    <h1>Add Article</h1>
+    <a href="/admin/articles">Back to Articles List</a>
+    <a href="/logout">Logout</a>
+
+    <form action="/admin/article-add" method="POST">
+        <label>Title</label>
+        <input required type="text" name="title">
+
+        <label>Content</label>
+        <textarea required name="content"></textarea>
+
+        <input type="submit" value="Add Article">
+    </form>
+    {% else %}
+    <p>NOPE! YOU CANNOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}
+
+</body>
+</html>

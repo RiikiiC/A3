@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animation Wiki</title>
+        <link rel="stylesheet" href="/static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <meta name="description" content="The Animation Wiki is a free, public, and collaborative encyclopedia for everything related to animation: Industry, Technical, Career"> 
+    <meta name="keywords" content="Animation, Industry, Technical, Career"> 
+    <link rel="author" content="Riikii"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/stastic/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="/static/image/Site-logo.webp" alt="logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Welcome! </h1>
+            <p>
+                The Animation Wiki is a free, public, and collaborative encyclopedia for everything related to animation: Industry, Technical, Career
+            </p>
+        </section>
+
+
+
+        <section id="featured"> 
+            <article class="article-featured">
+                <img src="/static/image/AA1O33Gq.png" alt="flash">
+                <h2>Will Flash The Sloth Be In Zootopia 2? I'm Pleased To Report What I Learned From Disney Animation About His Return</h2>
+                <p class="author-featured">Author: Sarah El-Mahmoud</p>
+                <p>
+                    Zootopia 2 picks up just a week after the events of the first movie at a time where Nick and Judy are still figuring out how to be an effective team. They find themselves engrossed in a new mystery that will answer why reptiles haven't been living in Zootopia. When I asked the filmmakers, here's how Howard teased Flash's return:
+                </p>
+                <p><a href="/article/FeaturedArticle" target="_blank">Read more</a></p>
+            </article>
+        </section>
+
+
+        <section class="categories">
+            <section id="industry" class="category"> 
+                <h2>Industry</h2>
+            
+                <article class="article-item">
+                    <img src="/static/image/WDAS-Solidarity-2-H-2025.webp" alt="Walt Disney Animation Studios Union">
+                    <h3>Walt Disney Animation Studios Production Workers Ratify First Contract</h3>
+                    <p class="author-industry">Author: Katie Kilkenny</p>
+                    <p>
+                        Production workers at Walt Disney Animation Studios officially have a first union contract.
+                    </p>
+                    <p><a href="/article/IndustryArticle1" target="_blank">Read more</a></p>
+                </article>
+            
+                <article class="article-item">
+                    <img src="/static/image/A3Payoff_AshHordeCotaBottom_BigFire_017g_004_w1.0_Mech9_1.jpg" alt="avatar">
+                    <h3>'Avatar: Fire and Ash' Debuts Trailer Featuring Stunning Visuals, New Clans, Environments, and Creatures</h3>
+                    <p class="author-industry">Author: Robert A. Iger</p>
+                    <p>
+                        A stunning new trailer and poster for Avatar: Fire and Ash from Oscar®-winning filmmaker Disney Legend James Cameron have arrived. The third film in the phenomenally successful “Avatar” franchise opens exclusively in theaters worldwide in IMAX 3D, Dolby Cinema 3D, RealD 3D, Cinemark XD, 4DX, ScreenX, and premium screens everywhere on December 19.
+                    </p>
+                    <p><a href="/article/IndustryArticle2" target="_blank">Read more</a></p>
+                </article>
+            </section>
+        
+            <section id="technical" class="category">
+               <h2>Technical</h2>
+            
+                <article class="article-item">
+                   <img src="/static/image/Frozen-ever-After-1200x723.jpg" alt="frozen">
+                   <h3>Are AI Enhanced Animatronics Coming to Disney Parks? — Patent Filed for New Technology</h3>
+                   <p class="author-technical">Author: Shannen Ace</p>
+                   <p>
+                       Disney has filed a patent for advancements in animatronic projection technology, which could potentially use AI.
+                   </p>
+                   <p><a href="/article/TechnicalArticle1" target="_blank">Read more</a></p>
+                </article>
+            
+                <article class="article-item">
+                    <img src="/static/image/maxresdefault-7-1288x724.jpg" alt="tech">
+                    <h3>Analyzing the Development of Digital Technology in Disney Animations</h3>
+                    <p class="author-technical">Author: Zining Luo</p>
+                    <p>
+                        In Disney's animated movies, every blade of grass sways in the wind, every strand of hair is crystal clear, every movement is fluid and natural… From Mickey Mouse to every princess, each character has left an indelible impression on generations of people. For hundreds of years, Disney has created countless dreams for adults and children alike. And these household-name animations all began with a simple pencil, then rode the wave of technology to create something truly magical, from hand-drawn lines to digital wizardry. Disney's boundless imagination continues to reshape the map of the animated world, from the earliest hand-drawn sketches to electrostatic printing and now to CGI technology. Yet, innovation continues, but it all starts with that first pencil stroke.
+                    </p>
+                    <p><a href="/article/TechnicalArticle2" target="_blank">Read more</a></p>
+                </article>
+            
+            </section>
+        
+        
+            <section id="career" class="category">
+                <h2>Career</h2>
+            
+                <article class="article-item">
+                    <img src="/static/image/62daf21ba4eaf459e1be410258f54325.webp" alt="The Princess and the Frog">
+                    <h3>Job cuts at Walt Disney Animation Studios' Vancouver office</h3>
+                    <p class="author-career">Author: David Carrigg</p>
+                    <p>
+                       Walt Disney Animation Studios has laid off employees at its Vancouver office. 
+                    </p>
+                    <p><a href="/article/CareerArticle1" target="_blank">Read more</a></p>
+                </article>
+            
+                <article class="article-item">
+                    <img src="/static/image/1758646966998.jpg" alt="Mariz Fahmy">
+                    <h3>SFU computing science student takes star turn at Disney</h3>
+                    <p class="author-career">Author: Matt Kieltyka</p>
+                    <p>
+                        When Mariz Fahmy came to Simon Fraser University to study computing science, seeing her name as the credits rolled on a film that's taken the world by storm wasn't an outcome she imagined.
+                    </p>
+                    <p><a href="/article/CareerArticle2" target="_blank">Read more</a></p>
+                </article>        
+            </section>    
+        </section>
+
+
+        <section class="stats">
+            <h2>Site Visitors</h2>
+            <table>
+                <tr>
+                    <td>Month</td> <td>Number of site visitors</td>
+                </tr>
+                <tr>
+                    <td>Sep.2025</td> <td>30</td>
+                </tr>                
+                <tr>
+                    <td>Aug.2025</td> <td>204</td>
+                </tr>
+                <tr>
+                    <td>Jul.2025</td> <td>400</td>
+                </tr>
+                <tr>
+                    <td>Jun.2025</td> <td>349</td>
+                </tr>
+                <tr>
+                    <td>May.2025</td> <td>104</td>
+                </tr>
+                <tr>
+                    <td>Apr.2025</td> <td>345</td>
+                </tr>        
+            </table>        
+        </section>    
+
+
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/tc0Q1KLXjZI?si=TOsrqSgJIiJYmVYT" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+    </main>
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

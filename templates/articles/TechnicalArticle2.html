@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyzing the Development of Digital Technology in Disney Animations</title>
+        <link rel="stylesheet" href="../static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+            
+    <meta name="description" content="Analyzing the Development of Digital Technology in Disney Animations"> 
+    <meta name="keywords" content="AI, Digital Technology, Technical News"> 
+    <link rel="author" content="Zining Luo"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="../static/image/Site-logo.webp" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <p>Total likes: {{ count }}</p>
+            {% if session.get('userId') %}
+                {% if session.get('role') == 'member' %}
+                    <form action="/like/{{ name }}" method="POST">
+                        {% if userliked %}
+                                <button style="background-color: rgb(11, 242, 192);">Liked</button>
+                        {% else %}
+                                <button style="background-color: rgb(190, 190, 190);">Like</button>
+                        {% endif %}
+                    </form>
+                {% elif session.get('role') == 'admin' %}
+                        <p>Admin cannot click</p>
+                {% endif %}
+            {% else %}
+                <p>
+                    <a href="/login">Login to like the article.</a>
+                </p>
+            {% endif %}
+        </section>
+        <article class="article-item">
+            <h1>Analyzing the Development of Digital Technology in Disney Animations</h1>
+            <p>Author: Zining Luo</p>
+            <img src="../static/image/maxresdefault-7-1288x724.jpg" alt="tech">
+        
+            <p>
+                In Disney's animated movies, every blade of grass sways in the wind, every strand of hair is crystal clear, every movement is fluid and natural… From Mickey Mouse to every princess, each character has left an indelible impression on generations of people. For hundreds of years, Disney has created countless dreams for adults and children alike. And these household-name animations all began with a simple pencil, then rode the wave of technology to create something truly magical, from hand-drawn lines to digital wizardry. Disney's boundless imagination continues to reshape the map of the animated world, from the earliest hand-drawn sketches to electrostatic printing and now to CGI technology. Yet, innovation continues, but it all starts with that first pencil stroke.
+            </p>
+            <p>
+                When people think of Disney, they often think of Disney's “boss,” Mickey Mouse. “Steamboat Willie” is also a true pioneering work. This animated film is the first talking animation and Mickey's debut. Then there's “Snow White and the Seven Dwarfs,” which is the first full-length color film. Its appearance marks a breakthrough in Disney's animated films. In the production process, it used tracing technology, where Disney used live actors and filmed them, and animators drew each frame through a transparent glass. It also used the multi-plane camera created for solving the problem of characters and backgrounds moving simultaneously in the 1937 film “The Old Mill,” which gave the background a sense of depth and made the character's movements more fluid and realistic. However, the production process of hand-drawn animation still requires a lot of time and high costs to complete, and there are certain limitations in terms of expression
+            </p>
+            <p>
+                In the late 1980s, Disney and Pixar collaborated to develop the CA PS system, which digitally colored and post-processed animation, revolutionizing the traditional hand-drawn process. Before that, Disney used innovative visual and musical fusion in “Fantasia” by using multi-plane cameras and the most advanced color technology of the time to combine music with abstract animated scenes, creating a visually striking experience. This was also an attempt to combine hand-drawn and technical elements. In 1961, Disney used XEROX copying technology for the first time in “101 Dalmatians” to simplify the hand-drawn animation process, converting animators' sketches directly into film, which made the animation style more modern. The complete integration of hand-drawn and digital techniques can be seen in the 1989 film “The Little Mermaid,” which is one of Disney's finest hand-drawn animated films. The film also marked the beginning of Disney's animation renaissance, as it maintained its traditional hand-drawn style while introducing some digital technologies such as CAPS. Although it still relied on hand-drawn techniques, its colors were richer, the backgrounds more complex, and it showcased the perfect combination of digital technology and hand-drawn animation.
+            </p>
+        
+            <p><a href="https://digitalaudiovisualmedia.org/2024/11/27/analyzing-the-development-of-digital-technology-in-disney-animations/">External source</a></p>
+            <p><a href="/">Go back</a></p>
+        </article>
+    </main>
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

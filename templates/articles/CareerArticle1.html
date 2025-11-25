@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job cuts at Walt Disney Animation Studios' Vancouver office</title>
+        <link rel="stylesheet" href="../static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <meta name="description" content="Job cuts at Walt Disney Animation Studios' Vancouver office"> 
+    <meta name="keywords" content="Animation, Job Cuts, Career News"> 
+    <link rel="author" content="David Carrigg"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="../static/image/Site-logo.webp" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <p>Total likes: {{ count }}</p>
+            {% if session.get('userId') %}
+                {% if session.get('role') == 'member' %}
+                    <form action="/like/{{ name }}" method="POST">
+                        {% if userliked %}
+                                <button style="background-color: rgb(11, 242, 192);">Liked</button>
+                        {% else %}
+                                <button style="background-color: rgb(190, 190, 190);">Like</button>
+                        {% endif %}
+                    </form>
+                {% elif session.get('role') == 'admin' %}
+                        <p>Admin cannot click</p>
+                {% endif %}
+            {% else %}
+                <p>
+                    <a href="/login">Login to like the article.</a>
+                </p>
+            {% endif %}
+        </section>
+        <article class="article-item">
+            <h1>Job cuts at Walt Disney Animation Studios' Vancouver office</h1>
+            <p>Author: David Carrigg</p>
+            <img src="../static/image/62daf21ba4eaf459e1be410258f54325.webp" alt="The Princess and the Frog">
+        
+            <p>
+               Walt Disney Animation Studios has laid off employees at its Vancouver office. 
+            </p>
+            <p>
+                While the company has not publicly confirmed the number of jobs eliminated, a person familiar with the situation who could not be identified as they&apos;re not authorized to speak on the matter did confirm the job cuts.
+            </p>
+            <p>
+                The number of employees at the Vancouver office following the job cuts is said to be approximately 300.
+            </p>
+            <p>
+                The source confirmed the cuts were related to Disney&apos;s decision to shift away from long-form content and instead focus on one theatrical feature a year plus short-form content.
+            </p>
+            <p>
+                Disney Animation Studios operates two locations, one in Burbank, Calif. and one in Vancouver. There are no plans to close either location.
+            </p>
+            <p>
+                The Vancouver office, which is in Yaletown, was opened in 2022 to work on long-form programs and the main show the local crew was working on was a Tiana princess series, which was a spinoff from The Princess and the Frog.
+            </p>
+            <p>
+                As well as cancelling the Tiana series, the Vancouver studio is also scrapping another feature-length project it was working on.
+            </p>
+            <p>
+                Pixar, a subsidiary of Disney, opened a Gastown studio in 2010 with a mandate to produce short films based on established Pixar characters. Close to 100 animation workers lost their jobs three years later when Disney shuttered the facility.
+            </p>
+            <p>
+                Vancouver has become a hub for animation in recent years. According to the Vancouver Economic Commission, an estimated 150 visual effects and animation businesses operate in and around the city. That number makes it the “world&apos;s largest cluster of domestic and foreign-owned studios,” according to the commission.
+            </p>
+        
+            <p><a href="https://ca.news.yahoo.com/job-cuts-walt-disney-animation-140506390.html?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuYmluZy5jb20v&guce_referrer_sig=AQAAAA-SYKxZTqQnGnunUFtZIONJespwhXrTnchISaONjWLHVz744CBc2_IOJcQa2noePpP8zA-AxahQnKX1UWft9EhoLWQUELL0M0r5KDnfNiI4-SId7PBtgw0JWhPA84k4Z_COcaxd-Kiy-OhKvlZK-c7jjaTY7gckD9NZLMjEQIzR">External source</a></p>
+            <p><a href="/">Go back</a></p>            
+        </article>
+    </main>
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

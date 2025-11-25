@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>'Avatar: Fire and Ash' Debuts Trailer Featuring Stunning Visuals, New Clans, Environments, and Creatures</title>
+        <link rel="stylesheet" href="../static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+            
+    <meta name="description" content="'Avatar: Fire and Ash' Debuts Trailer Featuring Stunning Visuals, New Clans, Environments, and Creatures"> 
+    <meta name="keywords" content="Disney, Avatar, Visual, Industry News"> 
+    <link rel="author" content="Robert A. Iger"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="../static/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="../static/image/Site-logo.webp" alt="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section>
+            <p>Total likes: {{ count }}</p>
+            {% if session.get('userId') %}
+                {% if session.get('role') == 'member' %}
+                    <form action="/like/{{ name }}" method="POST">
+                        {% if userliked %}
+                                <button style="background-color: rgb(11, 242, 192);">Liked</button>
+                        {% else %}
+                                <button style="background-color: rgb(190, 190, 190);">Like</button>
+                        {% endif %}
+                    </form>
+                {% elif session.get('role') == 'admin' %}
+                        <p>Admin cannot click</p>
+                {% endif %}
+            {% else %}
+                <p>
+                    <a href="/login">Login to like the article.</a>
+                </p>
+            {% endif %}
+        </section>
+        <article class="article-item">
+            <h1>'Avatar: Fire and Ash' Debuts Trailer Featuring Stunning Visuals, New Clans, Environments, and Creatures</h1>
+            <p>Author: Robert A. Iger</p>
+            <img src="../static/image/A3Payoff_AshHordeCotaBottom_BigFire_017g_004_w1.0_Mech9_1.jpg" alt="avatar">
+        
+            <p>
+                A stunning new trailer and poster for Avatar: Fire and Ash from Oscar®-winning filmmaker Disney Legend James Cameron have arrived. The third film in the phenomenally successful “Avatar” franchise opens exclusively in theaters worldwide in IMAX 3D, Dolby Cinema 3D, RealD 3D, Cinemark XD, 4DX, ScreenX, and premium screens everywhere on December 19.
+            </p>
+            <p>
+                In addition, Avatar: The Way of Water, the Oscar-winning global box office phenomenon, which was released in 2022 and grossed more than $2.3 billion worldwide, winning an Academy Award® for best achievement in visual effects, will be re-released in 3D exclusively in theaters for a one-week special engagement worldwide on October 3.
+            </p>
+            <p>
+                With Avatar: Fire and Ash, James Cameron takes audiences back to Pandora in an immersive new adventure with Marine turned Na'vi leader Jake Sully (Sam Worthington), Na'vi warrior Neytiri (Zoe Saldaña), and the Sully family.
+            </p>
+            <p>
+                The film, which has a screenplay by James Cameron & Rick Jaffa & Amanda Silver, and a story by James Cameron & Rick Jaffa & Amanda Silver & Josh Friedman & Shane Salerno, also stars Sigourney Weaver, Stephen Lang, Oona Chaplin, Cliff Curtis, Joel David Moore, CCH Pounder, Edie Falco, David Thewlis, Jemaine Clement, Giovanni Ribisi, Britain Dalton, Jamie Flatters, Trinity Jo-Li Bliss, Jack Champion, Brendan Cowell, Bailey Bass, Filip Geljo, Duane Evans, Jr., and Kate Winslet.
+            </p>
+            
+            <p><a href="https://thewaltdisneycompany.com/avatar-fire-ash-trailer-2/">External source</a></p>
+            <p><a href="/">Go back</a></p>            
+        </article>
+    </main>
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

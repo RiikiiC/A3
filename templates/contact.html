@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+        <link rel="stylesheet" href="/static/css/main.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <meta name="description" content="Contact Us!"> 
+    <meta name="keywords" content="Contact, Information"> 
+    <link rel="author" content="Riikii"/>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/image/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/image/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/image/favicon_io/favicon-16x16.png">
+    <link rel="manifest" href="/static/image/site.webmanifest">
+</head>
+<body>
+    <header>
+        <img src="/static/image/Site-logo.webp" alt="logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="/"> HOMEPAGE </a></li>
+                <li><a href="/about"> ABOUT </a></li>
+                <li><a href="/contact"> CONTACT </a></li>
+                {% if session.get('userId') %}
+                    {% if session.get('role') == 'admin' %}
+                        <li><a href="/admin"> DASHBOARD </a></li>
+                    {% endif %}
+                    <li><a href="/logout"> LOGOUT </a></li>
+                {% else %}
+                    <li><a href="/login"> LOGIN </a></li>
+                    <li><a href="/register"> REGISTER </a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <main class="contact">
+        <h1>Contact Us! </h1>
+
+        <section>
+            <form action="/process-contact" method="POST">
+                <label for="name">Name: </label>
+                <input required autofocus type="text" name="name" id="name" placeholder="Enter your name"/>
+
+                <label for="email">Email: </label>
+                <input type="email" name="email" id="email" placeholder="Enter your email"/>
+                
+                <input type="checkbox" name="industry" id="industry"/>
+                <label for="industry">Industry</label>
+
+                <input type="checkbox" name="technical" id="technical"/>
+                <label for="technical">Technical</label>
+            
+                <input type="checkbox" name="career" id="career"/>
+                <label for="career">Career</label>
+                
+                <select name="role">
+                    <option value="1"> Writer </option>
+                    <option value="2"> Contributor </option>
+                    <option value="3"> Administrator </option>
+                </select>
+
+                <input type="submit" />
+            </form>             
+        </section>
+       
+    </main>
+
+
+    <footer>
+        <p>Our website uses cookies to improve user experience. By accepting, you consent to our use of such cookies. More information can be found in our Privacy & Cookie Policy</p> <a href=# target="_blank"> Accept Cookies </a>
+    </footer>
+</body>
+</html>

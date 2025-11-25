@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Featured Article</title>
+</head>
+<body>
+    {% if role == 'admin' %}
+    <h1>Set Featured Article</h1>
+    <a href="/admin/articles">Back to Articles List</a>
+
+    <p>set {{ article.title }} as featured article</p>
+    <form action="/admin/set-featured/{{ article.articleId }}" method="POST">
+        <input type="submit" value="Set Featured">
+    </form>
+    <a href="/admin/articles">Cancel</a>
+    {% else %}
+    <p>NOPE! YOU CANNOT SEE THIS! <a href="/logout">logout</a></p>
+    {% endif %}    
+</body>
+</html>

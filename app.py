@@ -91,7 +91,57 @@ def logout():
 
 @app.route("/article/<name>")
 def article(name):
-    return render_template("articles/" + name + ".html")
+    cursor.execute(
+        "SELECT COUNT(*) AS total FROM Likes WHERE articleId = %s", 
+        (name, )
+    )
+    result = cursor.fetchone()
+    count = result["total"]
+
+    userliked = False
+
+    if session.get('userId') and session.get('role') == 'member':
+        cursor.execute(
+            "SELECT COUNT(*) AS click FROM Likes WHERE userId = %s AND articleId = %s", 
+            (session['userId'], name)
+        )
+        result = cursor.fetchone()
+        if result["click"] > 0:
+            userliked = True
+
+    return render_template("articles/" + name + ".html", 
+                           count=count, userliked=userliked, name=name)
+
+
+@app.route("/like/<name>", methods=['POST'])
+def like(name):
+    if 'userId' not in session or session.get('role') != 'member':
+        return "YOU CANNOT LIKE THIS!"
+    
+    userId = session['userId']
+
+    cursor.execute(
+        "SELECT likeId FROM Likes WHERE userId = %s AND articleId = %s", 
+        (userId, name)
+    )
+    liked = cursor.fetchone()
+
+    if liked:
+        cursor.execute(
+            "DELETE FROM Likes WHERE likeId = %s", 
+            (liked['likeId'],)
+        )
+        conn.commit()
+    else:
+        cursor.execute(
+            "INSERT INTO Likes (userId, articleId) VALUES (%s, %s)", 
+            (userId, name)
+        )
+        conn.commit()        
+
+    return redirect(f"/article/{name}")
+
+
 
 
 @app.route("/admin/articles")
@@ -192,7 +242,42 @@ def admin_set_featured(article_id):
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    cursor.execute("SELECT * FROM About LIMIT 1")
+    about = cursor.fetchone()
+    return render_template("about.html", about=about)
+
+@app.route("/admin/about-edit", methods=['GET', 'POST'])
+def admin_about_edit():
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+    
+    if request.method == 'GET':
+        cursor.execute("SELECT * FROM About LIMIT 1")
+        about = cursor.fetchone()
+        return render_template("admin/about-edit.html", role=session.get('role'), about=about)
+    
+    if request.method == 'POST':
+        content = request.form.get('content')
+
+        cursor.execute(
+            "UPDATE About SET content = %s WHERE id = 1", (content, ))
+        
+        conn.commit()
+
+        return redirect("/about")
+
+
+@app.route("/admin/contact-list")
+def admin_contact_list():
+    if 'userId' not in session or session.get('role') != 'admin':
+        return "NOPE! YOU CANNOT SEE THIS!"
+
+    cursor.execute("SELECT * FROM Contacts")
+    contacts = cursor.fetchall()
+
+    return render_template("admin/contact-list.html", role=session.get('role'), contacts=contacts)
+
+
 
 @app.route("/contact")
 def contact():

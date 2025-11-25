@@ -41,6 +41,26 @@
     </header>
     
     <main>
+        <section>
+            <p>Total likes: {{ count }}</p>
+            {% if session.get('userId') %}
+                {% if session.get('role') == 'member' %}
+                    <form action="/like/{{ name }}" method="POST">
+                        {% if userliked %}
+                                <button style="background-color: rgb(11, 242, 192);">Liked</button>
+                        {% else %}
+                                <button style="background-color: rgb(190, 190, 190);">Like</button>
+                        {% endif %}
+                    </form>
+                {% elif session.get('role') == 'admin' %}
+                        <p>Admin cannot click</p>
+                {% endif %}
+            {% else %}
+                <p>
+                    <a href="/login">Login to like the article.</a>
+                </p>
+            {% endif %}
+        </section>
         <article class="article-item">
             <h1>Are AI Enhanced Animatronics Coming to Disney Parks? — Patent Filed for New Technology</h1>
             <p>Author: Shannen Ace</p>
